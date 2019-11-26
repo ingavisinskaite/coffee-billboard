@@ -1,5 +1,9 @@
 .billboard {
     display: flex;
     flex-wrap: wrap;
-    margin: 10px
+}
+
+.add {
+    float: right;
+    margin-right: 5px !important;
 }
