@@ -2,44 +2,53 @@
     flex: 1 0 21%;
     margin: 5px;
     position: relative;
+    min-width: 275;
+
+    .coffee-img {
+        width: 100%;
+        border-radius: 5px;
+        height: 70px;
+        padding-top: 56.25%;
+    }
+
+    .delete {
+        position: absolute;
+        right: 1.5vw;
+        top: 1.5vw;
+        color: white;
+        cursor: pointer;
+    }
+
+    .edit {
+        position: absolute;
+        right: 3.5vw;
+        top: 1.5vw;
+        color: white;
+        cursor: pointer;
+    }
+
+    .delete:hover,
+    .edit:hover {
+        color: red;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        .title {
+            flex: 1;
+            margin-bottom: 12
+        }
+    }
 }
 
 .coffee-card:hover .coffee-img {
     opacity: 0.8;
 }
 
-.coffee-img {
-    width: 100%;
-    border-radius: 5px;
-}
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-}
 
-.title {
-    flex: 1;
-}
 
-.delete {
-    position: absolute;
-    right: 1.5vw;
-    top: 1.5vw;
-    color: white;
-    cursor: pointer;
-}
 
-.delete:hover,
-.edit:hover {
-    color: red;
-}
-
-.edit {
-    position: absolute;
-    right: 3.5vw;
-    top: 1.5vw;
-    color: white;
-    cursor: pointer;
-}

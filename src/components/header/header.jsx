@@ -10,10 +10,10 @@ const mapStateToProps = state => {
 const Header = props => {
   return (
     <div className="header">
-      <div>
+      <a href="/" className="logo-container">
         <span className="logo-text">Coffee House</span>
         <img src="./coffee-beans.png" alt="logo" className="logo-img"></img>
-      </div>
+      </a>
       <p className="coffee-count">
         Total amount of coffee: {props.coffee.coffeeList.length}
       </p>

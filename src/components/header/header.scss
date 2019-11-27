@@ -9,17 +9,21 @@
     justify-content: space-between;
     align-items: center;
 
-    .logo-text {
-        flex: 1;
-        font-family: 'Indie Flower', cursive;
-        font-size: 28px;
-        margin-left: 15px;
-        color: white;
-        margin: 0 10px;
-    }
+    .logo-container {
+        text-decoration: none;
 
-    .logo-img {
-        vertical-align: sub;
+        .logo-text {
+            flex: 1;
+            font-family: 'Indie Flower', cursive;
+            font-size: 28px;
+            margin-left: 15px;
+            color: white;
+            margin: 0 10px;
+        }
+
+        .logo-img {
+            vertical-align: sub;
+        }
     }
 
     .coffee-count {
