@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss";
+import "./header.scss";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {

@@ -36,6 +36,26 @@ export function removeCoffee(coffeeId) {
     }
 }
 
+export function editCoffee(editedCoffee, coffeeId) {
+    return function (dispatch) {
+        dispatch(requestCoffeeList())
+
+        return fetch('http://localhost:3001/coffee/' + coffeeId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({imgUrl: editedCoffee.imgUrl, title: editedCoffee.title, price: editedCoffee.price})
+        })
+            .then(response => response.json())
+            .then(json => {
+                dispatch(receiveCoffeeList(json.coffeeList))
+            })
+    }
+}
+
+
+
 export function requestCoffeeList() {
     return {
         type: REQUEST_COFFEE_LIST

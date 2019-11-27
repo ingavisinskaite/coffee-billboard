@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
-import Billboard from './components/billboard';
-import Header from './components/header';
+import Billboard from './components/billboard/billboard';
+import Header from './components/header/header';
 import 'typeface-roboto';
 import { useDispatch } from 'react-redux';
 import { fetchCoffeeList } from './redux/actions';

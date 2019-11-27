@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.scss";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -11,6 +10,7 @@ import Button from "@material-ui/core/Button";
 
 const AddCoffeeDialog = props => {
   const inputProps = {
+    min: 0.1,
     step: 0.1
   };
 
@@ -22,7 +22,7 @@ const AddCoffeeDialog = props => {
     imgUrl: newCoffeeImg,
     title: newCoffeeTitle,
     price: newCoffeePrice
-  }
+  };
 
   return (
     <Dialog
@@ -42,6 +42,7 @@ const AddCoffeeDialog = props => {
           type="text"
           fullWidth
           onChange={e => setNewCoffeeImg(e.target.value)}
+          required
         />
         <TextField
           margin="dense"
@@ -49,6 +50,7 @@ const AddCoffeeDialog = props => {
           type="text"
           fullWidth
           onChange={e => setNewCoffeeTitle(e.target.value)}
+          required
         />
         <TextField
           margin="dense"
@@ -60,6 +62,7 @@ const AddCoffeeDialog = props => {
           inputProps={inputProps}
           fullWidth
           onChange={e => setNewCoffeePrice(Number(e.target.value))}
+          required
         />
       </DialogContent>
       <DialogActions>

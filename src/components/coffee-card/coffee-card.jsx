@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss";
+import "./coffee-card.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,11 +7,11 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
-import DeleteCoffeeDialog from "../delete-coffee-dialog";
+import DeleteCoffeeDialog from "../delete-coffee-dialog/delete-coffee-dialog";
 import EditIcon from "@material-ui/icons/Edit";
-import EditCoffeeDialog from "../edit-coffee-dialog";
+import EditCoffeeDialog from "../edit-coffee-dialog/edit-coffee-dialog";
 import { useDispatch } from 'react-redux';
-import { removeCoffee } from "../../redux/actions";
+import { removeCoffee, editCoffee } from "../../redux/actions";
 
 const useStyles = makeStyles({
   card: {
@@ -45,6 +45,11 @@ const CoffeeCard = props => {
   const handleCloseEdit = () => {
     setOpenEdit(false);
   };
+
+  const editCard = (coffee, id) => {
+    dispatch(editCoffee(coffee, id));
+    handleCloseEdit();
+  }
 
   const handleClickOpenDelete = () => {
     setOpenDelete(true);
@@ -89,6 +94,8 @@ const CoffeeCard = props => {
           coffeeTitle={props.title}
           coffeeImg={props.imgUrl}
           coffeePrice={props.price}
+          editCard={editCard}
+          coffeeId={props.id}
         />
         <Typography className={`${classes.pos} title`} color="textSecondary">
           {props.title}

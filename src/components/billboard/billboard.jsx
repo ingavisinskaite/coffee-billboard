@@ -1,11 +1,11 @@
 import React from "react";
-import "./style.scss";
-import CoffeeCard from "../coffee-card";
+import "./billboard.scss";
+import CoffeeCard from "../coffee-card/coffee-card";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from '@material-ui/core/Fab';
 import { connect } from "react-redux";
 import { addCoffee } from "../../redux/actions";
-import AddCoffeeDialog from "../add-coffee-dialog";
+import AddCoffeeDialog from "../add-coffee-dialog/add-coffee-dialog";
 import { useDispatch } from 'react-redux';
 
 

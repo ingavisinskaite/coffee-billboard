@@ -1,5 +1,4 @@
 import React from "react";
-import "./style.scss";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -17,17 +16,11 @@ const EditCoffeeDialog = props => {
   const [title, setTitle] = React.useState(props.coffeeTitle);
   const [price, setPrice] = React.useState(props.coffeePrice);
 
-  const editCoffeeUrl = url => {
-    setImgUrl(url);
-  };
-
-  const editCoffeeTitle = title => {
-    setTitle(title);
-  };
-
-  const editCoffeePrice = price => {
-    setPrice(price);
-  };
+  const editedCoffee = {
+    imgUrl,
+    title,
+    price
+  }
 
   return (
     <Dialog
@@ -44,7 +37,7 @@ const EditCoffeeDialog = props => {
           type="text"
           fullWidth
           value={imgUrl}
-          onChange={e => editCoffeeUrl(e.target.value)}
+          onChange={e => setImgUrl(e.target.value)}
         />
         <TextField
           margin="dense"
@@ -52,7 +45,7 @@ const EditCoffeeDialog = props => {
           type="text"
           fullWidth
           value={title}
-          onChange={e => editCoffeeTitle(e.target.value)}
+          onChange={e => setTitle(e.target.value)}
         />
         <TextField
           margin="dense"
@@ -64,14 +57,14 @@ const EditCoffeeDialog = props => {
           inputProps={inputProps}
           fullWidth
           value={price}
-          onChange={e => editCoffeePrice(e.target.value)}
+          onChange={e => setPrice(Number(e.target.value))}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={props.handleClose} color="primary">
+        <Button onClick={e => props.editCard(editedCoffee, props.coffeeId)} color="primary">
           Edit
         </Button>
       </DialogActions>
