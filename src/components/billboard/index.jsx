@@ -30,7 +30,7 @@ const Billboard = props => {
   return (
     <div>
       <div className="billboard">
-        {props.coffeeList.map((c, index) => {
+        {props.coffeeList.coffeeList.map((c, index) => {
           return (
             <CoffeeCard
               imgUrl={c.imgUrl}

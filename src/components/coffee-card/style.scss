@@ -30,3 +30,16 @@
     color: white;
     cursor: pointer;
 }
+
+.delete:hover,
+.edit:hover {
+    color: red;
+}
+
+.edit {
+    position: absolute;
+    right: 3.5vw;
+    top: 1.5vw;
+    color: white;
+    cursor: pointer;
+}

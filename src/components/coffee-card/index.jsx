@@ -8,6 +8,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteCoffeeDialog from "../delete-coffee-dialog";
+import EditIcon from "@material-ui/icons/Edit";
+import EditCoffeeDialog from "../edit-coffee-dialog";
 
 const useStyles = makeStyles({
   card: {
@@ -30,14 +32,23 @@ const useStyles = makeStyles({
 const CoffeeCard = props => {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
+  const [openEdit, setOpenEdit] = React.useState(false);
+  const [openDelete, setOpenDelete] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpenEdit = () => {
+    setOpenEdit(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseEdit = () => {
+    setOpenEdit(false);
+  };
+
+  const handleClickOpenDelete = () => {
+    setOpenDelete(true);
+  };
+
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
   };
 
   const formatPrice = price => {
@@ -52,14 +63,22 @@ const CoffeeCard = props => {
         image={props.imgUrl}
         title={props.title}
       />
-      <CardActions onClick={handleClickOpen}>
-        <DeleteIcon className="delete" />
+      <CardActions>
+        <DeleteIcon className="delete" onClick={handleClickOpenDelete} />
+        <EditIcon className="edit" onClick={handleClickOpenEdit} />
       </CardActions>
       <CardContent className="container">
         <DeleteCoffeeDialog
-          isOpen={open}
-          handleClose={handleClose}
+          isOpen={openDelete}
+          handleClose={handleCloseDelete}
           coffeeTitle={props.title}
+        />
+        <EditCoffeeDialog
+          isOpen={openEdit}
+          handleClose={handleCloseEdit}
+          coffeeTitle={props.title}
+          coffeeImg={props.imgUrl}
+          coffeePrice={props.price}
         />
         <Typography className={`${classes.pos} title`} color="textSecondary">
           {props.title}
