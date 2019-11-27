@@ -14,6 +14,16 @@ const AddCoffeeDialog = props => {
     step: 0.1
   };
 
+  const [newCoffeeImg, setNewCoffeeImg] = React.useState("");
+  const [newCoffeeTitle, setNewCoffeeTitle] = React.useState("");
+  const [newCoffeePrice, setNewCoffeePrice] = React.useState(0);
+
+  const newCoffee = {
+    imgUrl: newCoffeeImg,
+    title: newCoffeeTitle,
+    price: newCoffeePrice
+  }
+
   return (
     <Dialog
       open={props.isOpen}
@@ -31,8 +41,15 @@ const AddCoffeeDialog = props => {
           label="Image Url"
           type="text"
           fullWidth
+          onChange={e => setNewCoffeeImg(e.target.value)}
         />
-        <TextField margin="dense" label="Title" type="text" fullWidth />
+        <TextField
+          margin="dense"
+          label="Title"
+          type="text"
+          fullWidth
+          onChange={e => setNewCoffeeTitle(e.target.value)}
+        />
         <TextField
           margin="dense"
           label="Price"
@@ -42,13 +59,14 @@ const AddCoffeeDialog = props => {
           }}
           inputProps={inputProps}
           fullWidth
+          onChange={e => setNewCoffeePrice(Number(e.target.value))}
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={props.handleClose} color="primary">
+        <Button onClick={e => props.addNewCoffee(newCoffee)} color="primary">
           Add
         </Button>
       </DialogActions>

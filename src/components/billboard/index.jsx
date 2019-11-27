@@ -2,18 +2,21 @@ import React from "react";
 import "./style.scss";
 import CoffeeCard from "../coffee-card";
 import AddIcon from "@material-ui/icons/Add";
-import Button from "@material-ui/core/Button";
+import Fab from '@material-ui/core/Fab';
 import { connect } from "react-redux";
 import { addCoffee } from "../../redux/actions";
 import AddCoffeeDialog from "../add-coffee-dialog";
+import { useDispatch } from 'react-redux';
+
 
 const mapStateToProps = state => {
-  const coffeeList = state.coffee;
-  return { coffeeList };
+  const coffee = state.coffee;
+  return { coffee };
 };
 
 const Billboard = props => {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,6 +26,11 @@ const Billboard = props => {
     setOpen(false);
   };
 
+  const addNewCoffee = (newCoffee) => {
+    dispatch(addCoffee(newCoffee));
+    handleClose();
+  }
+
   const deleteCard = index => {
     console.log("deleted");
   };
@@ -30,30 +38,27 @@ const Billboard = props => {
   return (
     <div>
       <div className="billboard">
-        {props.coffeeList.coffeeList.map((c, index) => {
+        {props.coffee.coffeeList.map((c, index) => {
           return (
             <CoffeeCard
               imgUrl={c.imgUrl}
               title={c.title}
               price={c.price}
+              id={c.id}
               deleteCard={e => deleteCard(index)}
               key={index}
             />
           );
         })}
-      </div>
-      <div>
-        <Button
-          variant="contained"
+       <Fab
           color="primary"
           aria-label="add"
-          size="small"
           className="add"
           onClick={handleClickOpen}
         >
           <AddIcon />
-        </Button>
-        <AddCoffeeDialog isOpen={open} handleClose={handleClose} />
+        </Fab>
+        <AddCoffeeDialog isOpen={open} handleClose={handleClose} addNewCoffee={addNewCoffee}/>
       </div>
     </div>
   );

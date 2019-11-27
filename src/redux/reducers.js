@@ -3,8 +3,6 @@ import {
 } from 'redux'
 
 import {
-    ADD_COFFEE,
-    REMOVE_COFFEE,
     REQUEST_COFFEE_LIST,
     RECEIVE_COFFEE_LIST
 } from './actions';
@@ -26,16 +24,6 @@ function coffee(state = initialState, action) {
                 ...state,
                 coffeeList: action.coffeeList
             };
-        case ADD_COFFEE:
-            return [
-                ...state,
-                {
-                    imgUrl: action.coffeePayload.imgUrl,
-                    title: action.coffeePayload.title,
-                    price: action.coffeePayload.price
-                }
-            ]
-        case REMOVE_COFFEE:
         default:
             return state;
     }

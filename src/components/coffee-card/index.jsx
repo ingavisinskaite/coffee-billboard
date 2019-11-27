@@ -10,6 +10,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteCoffeeDialog from "../delete-coffee-dialog";
 import EditIcon from "@material-ui/icons/Edit";
 import EditCoffeeDialog from "../edit-coffee-dialog";
+import { useDispatch } from 'react-redux';
+import { removeCoffee } from "../../redux/actions";
 
 const useStyles = makeStyles({
   card: {
@@ -34,6 +36,7 @@ const CoffeeCard = props => {
 
   const [openEdit, setOpenEdit] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpenEdit = () => {
     setOpenEdit(true);
@@ -50,6 +53,11 @@ const CoffeeCard = props => {
   const handleCloseDelete = () => {
     setOpenDelete(false);
   };
+
+  const deleteCard = (id) => {
+    dispatch(removeCoffee(id));
+    handleCloseDelete();
+  }
 
   const formatPrice = price => {
     let formattedPrice = `${price.toFixed(2)}€`;
@@ -72,6 +80,8 @@ const CoffeeCard = props => {
           isOpen={openDelete}
           handleClose={handleCloseDelete}
           coffeeTitle={props.title}
+          coffeeId={props.id}
+          deleteCard={deleteCard}
         />
         <EditCoffeeDialog
           isOpen={openEdit}

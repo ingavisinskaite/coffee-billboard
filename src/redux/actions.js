@@ -1,19 +1,38 @@
-export const ADD_COFFEE = 'ADD_COFFEE';
-export const REMOVE_COFFEE = 'REMOVE_COFFEE';
 export const REQUEST_COFFEE_LIST = 'GET_COFFEE_LIST';
 export const RECEIVE_COFFEE_LIST = 'RECEIVE_COFFEE_LIST'
 
 export function addCoffee(coffeePayload) {
-    return {
-        type: ADD_COFFEE,
-        coffeePayload
+    return function (dispatch) {
+        dispatch(requestCoffeeList())
+
+        return fetch('http://localhost:3001/coffee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({imgUrl: coffeePayload.imgUrl, title: coffeePayload.title, price: coffeePayload.price}) 
+        })
+            .then(response => response.json())
+            .then(json => {
+                dispatch(receiveCoffeeList(json.coffeeList))
+            })
     }
 }
 
 export function removeCoffee(coffeeId) {
-    return {
-        type: REMOVE_COFFEE,
-        coffeeId
+    return function (dispatch) {
+        dispatch(requestCoffeeList())
+
+        return fetch('http://localhost:3001/coffee/' + coffeeId, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                dispatch(receiveCoffeeList(json.coffeeList))
+            })
     }
 }
 
@@ -41,4 +60,3 @@ export function fetchCoffeeList() {
             })
     }
 }
-

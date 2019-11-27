@@ -26,7 +26,7 @@ const DeleteCoffeeDialog = props => {
           <Button onClick={props.handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={props.handleClose} color="primary" autoFocus>
+          <Button onClick={e => props.deleteCard(props.coffeeId)} color="primary" autoFocus>
             Delete
           </Button>
         </DialogActions>
