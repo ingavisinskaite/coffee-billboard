@@ -1,6 +1,7 @@
+
 .coffee-card {
     flex: 1 0 21%;
-    margin: 5px;
+    margin: 7px;
     position: relative;
     min-width: 275;
 
@@ -11,25 +12,26 @@
         padding-top: 56.25%;
     }
 
-    .delete {
+    .icon {
         position: absolute;
-        right: 1.5vw;
         top: 1.5vw;
         color: white;
         cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        padding: 5px;
+    }
+
+    .icon:hover {
+        color: red;
+    }
+
+    .delete {
+        right: 10px;
     }
 
     .edit {
-        position: absolute;
-        right: 3.5vw;
-        top: 1.5vw;
-        color: white;
-        cursor: pointer;
-    }
-
-    .delete:hover,
-    .edit:hover {
-        color: red;
+        right: 50px;
     }
 
     .container {
@@ -39,7 +41,7 @@
 
         .title {
             flex: 1;
-            margin-bottom: 12
+            font-size: 20px;
         }
     }
 }
@@ -47,8 +49,3 @@
 .coffee-card:hover .coffee-img {
     opacity: 0.8;
 }
-
-
-
-
-

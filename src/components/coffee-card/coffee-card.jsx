@@ -9,11 +9,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import DeleteCoffeeDialog from "../delete-coffee-dialog/delete-coffee-dialog";
 import EditIcon from "@material-ui/icons/Edit";
 import EditCoffeeDialog from "../edit-coffee-dialog/edit-coffee-dialog";
-import { useDispatch } from 'react-redux';
-import { removeCoffee, editCoffee } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { deleteCoffee, putCoffee } from "../../redux/actions";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const CoffeeCard = props => {
-
   const [openEdit, setOpenEdit] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
   const dispatch = useDispatch();
@@ -27,9 +27,9 @@ const CoffeeCard = props => {
   };
 
   const editCard = (coffee, id) => {
-    dispatch(editCoffee(coffee, id));
+    dispatch(putCoffee(coffee, id));
     handleCloseEdit();
-  }
+  };
 
   const handleClickOpenDelete = () => {
     setOpenDelete(true);
@@ -39,10 +39,10 @@ const CoffeeCard = props => {
     setOpenDelete(false);
   };
 
-  const deleteCard = (id) => {
-    dispatch(removeCoffee(id));
+  const deleteCard = id => {
+    dispatch(deleteCoffee(id));
     handleCloseDelete();
-  }
+  };
 
   const formatPrice = price => {
     let formattedPrice = `${price.toFixed(2)}€`;
@@ -55,10 +55,19 @@ const CoffeeCard = props => {
         className="coffee-img"
         image={props.imgUrl}
         title={props.title}
+        style={{
+          background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('${props.imgUrl}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center"
+        }}
       />
       <CardActions>
-        <DeleteIcon className="delete" onClick={handleClickOpenDelete} />
-        <EditIcon className="edit" onClick={handleClickOpenEdit} />
+        <Tooltip title="Delete" aria-label="delete">
+          <DeleteIcon className="icon delete" onClick={handleClickOpenDelete} />
+        </Tooltip>
+        <Tooltip title="Edit" aria-label="edit">
+          <EditIcon className="icon edit" onClick={handleClickOpenEdit} />
+        </Tooltip>
       </CardActions>
       <CardContent className="container">
         <DeleteCoffeeDialog

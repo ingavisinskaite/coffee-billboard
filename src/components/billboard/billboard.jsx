@@ -2,12 +2,13 @@ import React from "react";
 import "./billboard.scss";
 import CoffeeCard from "../coffee-card/coffee-card";
 import AddIcon from "@material-ui/icons/Add";
-import Fab from '@material-ui/core/Fab';
+import Fab from "@material-ui/core/Fab";
 import { connect } from "react-redux";
-import { addCoffee } from "../../redux/actions";
+import { postCoffee } from "../../redux/actions";
 import AddCoffeeDialog from "../add-coffee-dialog/add-coffee-dialog";
-import { useDispatch } from 'react-redux';
-
+import { useDispatch } from "react-redux";
+import Tooltip from "@material-ui/core/Tooltip";
+import Grid from "@material-ui/core/Grid";
 
 const mapStateToProps = state => {
   const coffee = state.coffee;
@@ -26,31 +27,34 @@ const Billboard = props => {
     setOpen(false);
   };
 
-  const addNewCoffee = (newCoffee) => {
-    dispatch(addCoffee(newCoffee));
+  const addNewCoffee = newCoffee => {
+    dispatch(postCoffee(newCoffee));
     handleClose();
-  }
+  };
 
   const deleteCard = index => {
     console.log("deleted");
   };
 
   return (
-    <div>
-      <div className="billboard">
+    <div className="billboard">
+      <Grid container>
         {props.coffee.coffeeList.map((c, index) => {
           return (
-            <CoffeeCard
-              imgUrl={c.imgUrl}
-              title={c.title}
-              price={c.price}
-              id={c.id}
-              deleteCard={e => deleteCard(index)}
-              key={index}
-            />
+            <Grid item md={3} sm={4} xs={6} key={index}>
+              <CoffeeCard
+                imgUrl={c.imgUrl}
+                title={c.title}
+                price={c.price}
+                id={c.id}
+                deleteCard={e => deleteCard(index)}
+              />
+            </Grid>
           );
         })}
-       <Fab
+      </Grid>
+      <Tooltip title="Add new coffee" aria-label="add">
+        <Fab
           color="primary"
           aria-label="add"
           className="add"
@@ -58,13 +62,17 @@ const Billboard = props => {
         >
           <AddIcon />
         </Fab>
-        <AddCoffeeDialog isOpen={open} handleClose={handleClose} addNewCoffee={addNewCoffee}/>
-      </div>
+      </Tooltip>
+      <AddCoffeeDialog
+        isOpen={open}
+        handleClose={handleClose}
+        addNewCoffee={addNewCoffee}
+      />
     </div>
   );
 };
 
 export default connect(
   mapStateToProps,
-  { addCoffee }
+  { postCoffee }
 )(Billboard);

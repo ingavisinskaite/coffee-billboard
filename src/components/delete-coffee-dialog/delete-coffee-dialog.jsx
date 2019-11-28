@@ -18,7 +18,7 @@ const DeleteCoffeeDialog = props => {
         <DialogTitle id="alert-dialog-title">Delete coffee</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure want to delete {props.coffeeTitle}?
+            Are you sure want to delete {props.coffeeTitle} from your billboard?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

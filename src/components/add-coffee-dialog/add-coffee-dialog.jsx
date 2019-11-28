@@ -17,12 +17,42 @@ const AddCoffeeDialog = props => {
   const [newCoffeeImg, setNewCoffeeImg] = React.useState("");
   const [newCoffeeTitle, setNewCoffeeTitle] = React.useState("");
   const [newCoffeePrice, setNewCoffeePrice] = React.useState(0);
+  const [isInvalid, setIsInvalid] = React.useState(true);
+ 
 
   const newCoffee = {
     imgUrl: newCoffeeImg,
     title: newCoffeeTitle,
     price: newCoffeePrice
   };
+
+  const setCoffeeImg = url => {
+    setNewCoffeeImg(url);
+  }
+
+  const setCoffeeTitle = title => {
+    setNewCoffeeTitle(title);
+  }
+
+  const setCoffeePrice = price => {
+    setNewCoffeePrice(price);
+  }
+
+  const setNewCoffee = (value, name) => {
+    
+  }
+
+  const checkIfValide = () => {
+    if (newCoffeeImg.length > 0 && newCoffeeTitle.length > 0 && newCoffeePrice > 0) {
+      setIsInvalid(false);
+    } else {
+      setIsInvalid(true);
+    }
+  };
+
+  React.useEffect(() =>{
+    checkIfValide()
+  });
 
   return (
     <Dialog
@@ -33,43 +63,46 @@ const AddCoffeeDialog = props => {
       <DialogTitle id="form-dialog-title">Add new coffee</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          Please fill the fields to add new coffee
+          Please fill all the fields to add new coffee
         </DialogContentText>
         <TextField
           autoFocus
           margin="dense"
           label="Image Url"
           type="text"
+          name="imgUrl"
           fullWidth
-          onChange={e => setNewCoffeeImg(e.target.value)}
+          onChange={e => setCoffeeImg(e.target.value)}
           required
         />
         <TextField
           margin="dense"
           label="Title"
           type="text"
+          name="title"
           fullWidth
-          onChange={e => setNewCoffeeTitle(e.target.value)}
+          onChange={e => setCoffeeTitle(e.target.value)}
           required
         />
         <TextField
           margin="dense"
           label="Price"
           type="number"
+          name="price"
           InputProps={{
             endAdornment: <InputAdornment position="end">€</InputAdornment>
           }}
           inputProps={inputProps}
           fullWidth
-          onChange={e => setNewCoffeePrice(Number(e.target.value))}
+          onChange={e => setCoffeePrice(Number(e.target.value))}
           required
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.handleClose} color="primary">
+        <Button onClick={props.handleClose} variant="contained" color="primary">
           Cancel
         </Button>
-        <Button onClick={e => props.addNewCoffee(newCoffee)} color="primary">
+        <Button onClick={e => props.addNewCoffee(newCoffee)}  variant="contained" color="primary" disabled={isInvalid}>
           Add
         </Button>
       </DialogActions>

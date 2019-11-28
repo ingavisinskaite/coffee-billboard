@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+$break-mobile: 450px;
 
 .header {
     background-color: grey;
@@ -19,14 +20,26 @@
             margin-left: 15px;
             color: white;
             margin: 0 10px;
+
+            @media screen and (max-width: $break-mobile) {
+                font-size: 22px;
+            }
         }
 
         .logo-img {
             vertical-align: sub;
+
+            @media screen and (max-width: $break-mobile) {
+                vertical-align: bottom;
+            }
         }
     }
 
     .coffee-count {
         color: white;
+
+        @media screen and (max-width: $break-mobile) {
+            font-size: 15px;
+        }
     }
 }
