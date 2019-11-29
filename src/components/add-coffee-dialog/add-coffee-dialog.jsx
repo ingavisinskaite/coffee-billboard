@@ -18,7 +18,6 @@ const AddCoffeeDialog = props => {
   const [newCoffeeTitle, setNewCoffeeTitle] = React.useState("");
   const [newCoffeePrice, setNewCoffeePrice] = React.useState(0);
   const [isInvalid, setIsInvalid] = React.useState(true);
- 
 
   const newCoffee = {
     imgUrl: newCoffeeImg,
@@ -28,30 +27,30 @@ const AddCoffeeDialog = props => {
 
   const setCoffeeImg = url => {
     setNewCoffeeImg(url);
-  }
+  };
 
   const setCoffeeTitle = title => {
     setNewCoffeeTitle(title);
-  }
+  };
 
   const setCoffeePrice = price => {
     setNewCoffeePrice(price);
-  }
+  };
 
-  const setNewCoffee = (value, name) => {
-    
-  }
-
-  const checkIfValide = () => {
-    if (newCoffeeImg.length > 0 && newCoffeeTitle.length > 0 && newCoffeePrice > 0) {
+  const checkIfValid = () => {
+    if (
+      newCoffeeImg.length > 0 &&
+      newCoffeeTitle.length > 0 &&
+      newCoffeePrice > 0
+    ) {
       setIsInvalid(false);
     } else {
       setIsInvalid(true);
     }
   };
 
-  React.useEffect(() =>{
-    checkIfValide()
+  React.useEffect(() => {
+    checkIfValid();
   });
 
   return (
@@ -102,7 +101,12 @@ const AddCoffeeDialog = props => {
         <Button onClick={props.handleClose} variant="contained" color="primary">
           Cancel
         </Button>
-        <Button onClick={e => props.addNewCoffee(newCoffee)}  variant="contained" color="primary" disabled={isInvalid}>
+        <Button
+          onClick={e => props.addNewCoffee(newCoffee)}
+          variant="contained"
+          color="primary"
+          disabled={isInvalid}
+        >
           Add
         </Button>
       </DialogActions>

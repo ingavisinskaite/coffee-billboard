@@ -37,23 +37,27 @@ function coffee(state = initialState, action) {
         case RECEIVE_COFFEE_LIST:
             return {
                 ...state,
-                coffeeList: action.coffeeList
+                coffeeList: action.coffeeList,
+                    isLoading: false
             };
         case REMOVE_COFFEE_SUCCESS:
             return {
                 ...state,
-                coffeeList: state.coffeeList.filter(c => c.id !== action.coffeeId)
+                coffeeList: state.coffeeList.filter(c => c.id !== action.coffeeId),
+                    isLoading: false
             };
         case ADD_COFFEE_SUCCESS:
             return {
                 ...state,
-                coffeeList: state.coffeeList.concat(action.coffee)
+                coffeeList: state.coffeeList.concat(action.coffee),
+                    isLoading: false
             };
         case EDIT_COFFEE_SUCCESS:
             return {
                 ...state,
                 coffeeList: updateCoffeeById(action.coffeeId,
-                    action.coffee, state.coffeeList)
+                        action.coffee, state.coffeeList),
+                    isLoading: false
             }
             default:
                 return state;

@@ -9,6 +9,7 @@ import AddCoffeeDialog from "../add-coffee-dialog/add-coffee-dialog";
 import { useDispatch } from "react-redux";
 import Tooltip from "@material-ui/core/Tooltip";
 import Grid from "@material-ui/core/Grid";
+import LoadingSpinner from "../loading-spinner/loading-spinner";
 
 const mapStateToProps = state => {
   const coffee = state.coffee;
@@ -38,36 +39,42 @@ const Billboard = props => {
 
   return (
     <div className="billboard">
-      <Grid container>
-        {props.coffee.coffeeList.map((c, index) => {
-          return (
-            <Grid item md={3} sm={4} xs={6} key={index}>
-              <CoffeeCard
-                imgUrl={c.imgUrl}
-                title={c.title}
-                price={c.price}
-                id={c.id}
-                deleteCard={e => deleteCard(index)}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>
-      <Tooltip title="Add new coffee" aria-label="add">
-        <Fab
-          color="primary"
-          aria-label="add"
-          className="add"
-          onClick={handleClickOpen}
-        >
-          <AddIcon />
-        </Fab>
-      </Tooltip>
-      <AddCoffeeDialog
-        isOpen={open}
-        handleClose={handleClose}
-        addNewCoffee={addNewCoffee}
-      />
+      {props.coffee.isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div>
+          <Grid container>
+            {props.coffee.coffeeList.map((c, index) => {
+              return (
+                <Grid item md={3} sm={4} xs={6} key={index}>
+                  <CoffeeCard
+                    imgUrl={c.imgUrl}
+                    title={c.title}
+                    price={c.price}
+                    id={c.id}
+                    deleteCard={e => deleteCard(index)}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+          <Tooltip title="Add new coffee" aria-label="add">
+            <Fab
+              color="primary"
+              aria-label="add"
+              className="add"
+              onClick={handleClickOpen}
+            >
+              <AddIcon />
+            </Fab>
+          </Tooltip>
+          <AddCoffeeDialog
+            isOpen={open}
+            handleClose={handleClose}
+            addNewCoffee={addNewCoffee}
+          />
+        </div>
+      )}
     </div>
   );
 };
