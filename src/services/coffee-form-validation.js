@@ -1,4 +1,4 @@
-export const inputValidation = (values) => {
+export const isCoffeeFormValid = (values) => {
     if (values[0].length > 0 && values[1].length > 0 && values[2] > 0) {
         return true;
     } else {

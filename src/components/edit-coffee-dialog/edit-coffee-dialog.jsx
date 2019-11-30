@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
-import { inputValidation } from "../../services/input-validation";
+import { isCoffeeFormValid } from "../../services/coffee-form-validation";
 
 const EditCoffeeDialog = props => {
   const inputProps = {
@@ -25,7 +25,7 @@ const EditCoffeeDialog = props => {
   };
 
   React.useEffect(() => {
-    if (inputValidation([imgUrl, title, price])) {
+    if (isCoffeeFormValid([imgUrl, title, price])) {
       setIsValid(true);
     } else {
       setIsValid(false);

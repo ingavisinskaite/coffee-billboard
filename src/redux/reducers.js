@@ -14,7 +14,7 @@ import {
 } from './actions';
 
 const initialState = {
-    isLoading: true,
+    isLoading: false,
     coffeeList: []
 }
 
@@ -24,7 +24,7 @@ function updateCoffeeById(coffeeId, coffee, coffeeList) {
     return coffeeList;
 }
 
-function coffee(state = initialState, action) {
+export function coffeeReducer(state = initialState, action) {
     switch (action.type) {
         case EDIT_COFFEE:
         case REMOVE_COFFEE:
@@ -38,26 +38,26 @@ function coffee(state = initialState, action) {
             return {
                 ...state,
                 coffeeList: action.coffeeList,
-                    isLoading: false
+                isLoading: false
             };
         case REMOVE_COFFEE_SUCCESS:
             return {
                 ...state,
                 coffeeList: state.coffeeList.filter(c => c.id !== action.coffeeId),
-                    isLoading: false
+                isLoading: false
             };
         case ADD_COFFEE_SUCCESS:
             return {
                 ...state,
                 coffeeList: state.coffeeList.concat(action.coffee),
-                    isLoading: false
+                isLoading: false
             };
         case EDIT_COFFEE_SUCCESS:
             return {
                 ...state,
                 coffeeList: updateCoffeeById(action.coffeeId,
                         action.coffee, state.coffeeList),
-                    isLoading: false
+                isLoading: false
             }
             default:
                 return state;
@@ -65,5 +65,5 @@ function coffee(state = initialState, action) {
 }
 
 export default combineReducers({
-    coffee
+    coffee: coffeeReducer
 })
