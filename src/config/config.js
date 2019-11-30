@@ -1,3 +1,3 @@
 export const config = {
-    apiUrl: 'http://localhost:3001'
+    apiUrl: 'https://arcane-scrubland-42634.herokuapp.com'
 }
