@@ -1,4 +1,3 @@
-
 .coffee-card {
     flex: 1 0 21%;
     margin: 7px;
@@ -22,16 +21,20 @@
         padding: 5px;
     }
 
-    .icon:hover {
-        color: red;
-    }
-
     .delete {
         right: 10px;
     }
 
+    .delete:hover {
+        color: red;
+    }
+
     .edit {
         right: 50px;
+    }
+
+    .edit:hover {
+        color: blue;
     }
 
     .container {

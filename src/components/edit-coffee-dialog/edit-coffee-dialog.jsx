@@ -6,6 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
+import { inputValidation } from "../../services/input-validation";
 
 const EditCoffeeDialog = props => {
   const inputProps = {
@@ -15,12 +16,21 @@ const EditCoffeeDialog = props => {
   const [imgUrl, setImgUrl] = React.useState(props.coffeeImg);
   const [title, setTitle] = React.useState(props.coffeeTitle);
   const [price, setPrice] = React.useState(props.coffeePrice);
+  const [isValid, setIsValid] = React.useState(false);
 
   const editedCoffee = {
     imgUrl,
     title,
     price
-  }
+  };
+
+  React.useEffect(() => {
+    if (inputValidation([imgUrl, title, price])) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [imgUrl, title, price]);
 
   return (
     <Dialog
@@ -61,10 +71,15 @@ const EditCoffeeDialog = props => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.handleClose} color="primary">
+        <Button onClick={props.handleClose} color="primary" variant="contained">
           Cancel
         </Button>
-        <Button onClick={e => props.editCard(editedCoffee, props.coffeeId)} color="primary">
+        <Button
+          onClick={e => props.editCard(editedCoffee, props.coffeeId)}
+          color="primary"
+          variant="contained"
+          disabled={!isValid}
+        >
           Edit
         </Button>
       </DialogActions>
