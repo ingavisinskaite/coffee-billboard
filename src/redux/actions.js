@@ -1,3 +1,5 @@
+import { config } from '../config/config';
+
 export const REQUEST_COFFEE_LIST = 'GET_COFFEE_LIST';
 export const RECEIVE_COFFEE_LIST = 'RECEIVE_COFFEE_LIST'
 export const ADD_COFFEE = 'ADD_COFFEE';
@@ -25,7 +27,7 @@ export function postCoffee(coffeePayload) {
     return function (dispatch) {
         dispatch(addCoffee())
 
-        return fetch('http://localhost:3001/coffee', {
+        return fetch(`${config.apiUrl}/coffee`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -61,7 +63,7 @@ export function deleteCoffee(coffeeId) {
     return function (dispatch) {
         dispatch(removeCoffee())
 
-        return fetch('http://localhost:3001/coffee/' + coffeeId, {
+        return fetch(`${config.apiUrl}/coffee/${coffeeId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -93,7 +95,7 @@ export function putCoffee(editedCoffee, coffeeId) {
     return function (dispatch) {
         dispatch(editCoffee())
 
-        return fetch('http://localhost:3001/coffee/' + coffeeId, {
+        return fetch(`${config.apiUrl}/coffee/${coffeeId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -130,7 +132,7 @@ export function fetchCoffeeList() {
     return function (dispatch) {
         dispatch(requestCoffeeList())
 
-        return fetch('http://localhost:3001/coffee')
+        return fetch(`${config.apiUrl}/coffee`)
             .then(response => response.json())
             .then(json => {
                 dispatch(receiveCoffeeList(json.coffeeList))
