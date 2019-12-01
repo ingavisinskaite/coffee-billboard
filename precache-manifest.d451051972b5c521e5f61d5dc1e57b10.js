@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "320ee3685ee1d2bf7be2ba147b6c617f",
+    "revision": "7219b52929d8477ba4df2c711ed2e5ae",
     "url": "/coffee-billboard/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coffee-billboard/static/css/2.450de805.chunk.css"
   },
   {
-    "revision": "a61aee9b2f3a3b9a3624",
+    "revision": "1416da4851a7dcffeabb",
     "url": "/coffee-billboard/static/css/main.089bc4db.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/coffee-billboard/static/js/2.40f95726.chunk.js"
   },
   {
-    "revision": "a61aee9b2f3a3b9a3624",
-    "url": "/coffee-billboard/static/js/main.1f43ba33.chunk.js"
+    "revision": "1416da4851a7dcffeabb",
+    "url": "/coffee-billboard/static/js/main.387079df.chunk.js"
   },
   {
     "revision": "83a9683ade6bfdc6f7f1",
