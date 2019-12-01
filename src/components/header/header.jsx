@@ -10,7 +10,7 @@ const mapStateToProps = state => {
 const Header = props => {
   return (
     <div className="header">
-      <a href="/" className="logo-container">
+      <a href="/coffee-billboard" className="logo-container">
         <span className="logo-text">Coffee House</span>
         <img src="./coffee-beans.png" alt="logo" className="logo-img"></img>
       </a>
