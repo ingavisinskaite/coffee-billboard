@@ -21,7 +21,7 @@ const AddCoffeeDialog = props => {
   const [isValid, setIsValid] = React.useState(false);
 
   const newCoffee = {
-    imgUrl: newCoffeeImg,
+    url: newCoffeeImg,
     title: newCoffeeTitle,
     price: newCoffeePrice
   };
@@ -62,7 +62,7 @@ const AddCoffeeDialog = props => {
           margin="dense"
           label="Image Url"
           type="text"
-          name="imgUrl"
+          name="url"
           fullWidth
           onChange={e => setCoffeeImg(e.target.value)}
           required

@@ -3,14 +3,16 @@ import {
 } from 'redux'
 
 import {
-    REMOVE_COFFEE,
     REQUEST_COFFEE_LIST,
     RECEIVE_COFFEE_LIST,
     ADD_COFFEE,
-    REMOVE_COFFEE_SUCCESS,
     ADD_COFFEE_SUCCESS,
+    REMOVE_COFFEE,
+    REMOVE_COFFEE_SUCCESS,
     EDIT_COFFEE_SUCCESS,
-    EDIT_COFFEE
+    EDIT_COFFEE,
+    REQUEST_COFFEE_BY_ID,
+    REQUEST_COFFEE_BY_ID_SUCCESS
 } from './actions';
 
 const initialState = {
@@ -18,21 +20,22 @@ const initialState = {
     coffeeList: []
 }
 
-function updateCoffeeById(coffeeId, coffee, coffeeList) {
-    const coffeeIndex = coffeeList.findIndex(c => c.id === coffeeId);
+function updateCoffeeById(coffee, coffeeList) {
+    const coffeeIndex = coffeeList.findIndex(c => c.id === coffee.id);
     coffeeList[coffeeIndex] = coffee;
     return coffeeList;
 }
 
 export function coffeeReducer(state = initialState, action) {
     switch (action.type) {
+        case REQUEST_COFFEE_BY_ID:
         case EDIT_COFFEE:
         case REMOVE_COFFEE:
         case ADD_COFFEE:
         case REQUEST_COFFEE_LIST:
             return {
                 ...state,
-                isLoading: true
+                isLoading: false
             };
         case RECEIVE_COFFEE_LIST:
             return {
@@ -55,8 +58,13 @@ export function coffeeReducer(state = initialState, action) {
         case EDIT_COFFEE_SUCCESS:
             return {
                 ...state,
-                coffeeList: updateCoffeeById(action.coffeeId,
-                        action.coffee, state.coffeeList),
+                coffeeList: updateCoffeeById(action.coffee, state.coffeeList),
+                isLoading: false
+            }
+        case REQUEST_COFFEE_BY_ID_SUCCESS: 
+            return {
+                ...state,
+                coffeeList: state.coffeeList.concat(action.coffee),
                 isLoading: false
             }
             default:

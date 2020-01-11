@@ -48,7 +48,7 @@ const Billboard = props => {
               return (
                 <Grid item md={3} sm={4} xs={6} key={index}>
                   <CoffeeCard
-                    imgUrl={c.imgUrl}
+                    url={c.url}
                     title={c.title}
                     price={c.price}
                     id={c.id}

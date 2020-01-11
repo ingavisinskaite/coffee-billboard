@@ -13,24 +13,24 @@ const EditCoffeeDialog = props => {
     step: 0.1
   };
 
-  const [imgUrl, setImgUrl] = React.useState(props.coffeeImg);
+  const [url, seturl] = React.useState(props.coffeeImg);
   const [title, setTitle] = React.useState(props.coffeeTitle);
   const [price, setPrice] = React.useState(props.coffeePrice);
   const [isValid, setIsValid] = React.useState(false);
 
   const editedCoffee = {
-    imgUrl,
+    url,
     title,
     price
   };
 
   React.useEffect(() => {
-    if (isCoffeeFormValid([imgUrl, title, price])) {
+    if (isCoffeeFormValid([url, title, price])) {
       setIsValid(true);
     } else {
       setIsValid(false);
     }
-  }, [imgUrl, title, price]);
+  }, [url, title, price]);
 
   return (
     <Dialog
@@ -46,8 +46,8 @@ const EditCoffeeDialog = props => {
           label="Image Url"
           type="text"
           fullWidth
-          value={imgUrl}
-          onChange={e => setImgUrl(e.target.value)}
+          value={url}
+          onChange={e => seturl(e.target.value)}
         />
         <TextField
           margin="dense"

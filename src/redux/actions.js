@@ -8,6 +8,40 @@ export const REMOVE_COFFEE = 'REMOVE_COFFEE';
 export const REMOVE_COFFEE_SUCCESS = 'REMOVE_COFFEE_SUCCESS';
 export const EDIT_COFFEE = 'EDIT_COFFEE';
 export const EDIT_COFFEE_SUCCESS = 'EDIT COFFEE SUCCESS';
+export const GET_COFFEE_BY_ID = 'GET_COFFEE_BY_ID';
+export const REQUEST_COFFEE_BY_ID = 'REQUEST_COFFEE_BY_ID';
+export const REQUEST_COFFEE_BY_ID_SUCCESS = 'REQUEST_COFFEE_BY_ID_SUCCESS';
+
+export function getCoffeeById(coffeeId, sucessCallback) {
+    return function (dispatch) {
+        dispatch(requestCoffeeById(coffeeId))
+
+        return fetch(`${config.apiUrl}/coffee/${coffeeId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(coffee => {
+                dispatch(sucessCallback(coffee));
+            })
+    }
+}
+
+export function requestCoffeeById(coffeeId) {
+    return {
+        type: REQUEST_COFFEE_BY_ID,
+    }
+}
+
+export function requestCoffeeByIdSuccess(coffee) {
+    return {
+        type: REQUEST_COFFEE_BY_ID_SUCCESS,
+        coffee
+    }
+}
+
 
 export function addCoffee(coffeePayload) {
     return {
@@ -33,14 +67,14 @@ export function postCoffee(coffeePayload) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    imgUrl: coffeePayload.imgUrl,
+                    url: coffeePayload.url,
                     title: coffeePayload.title,
                     price: coffeePayload.price
                 })
             })
             .then(response => response.json())
-            .then(json => {
-                dispatch(addCoffeeSuccess(json.newCoffee));
+            .then(newCoffeeId => {
+                dispatch(getCoffeeById(newCoffeeId, addCoffeeSuccess));
             })
     }
 }
@@ -83,11 +117,10 @@ export function editCoffee(editedCoffee, coffeeId) {
     }
 }
 
-export function editCoffeeSuccess(editedCoffee, coffeeId) {
+export function editCoffeeSuccess(editedCoffee) {
     return {
         type: EDIT_COFFEE_SUCCESS,
-        coffee: editedCoffee,
-        coffeeId
+        coffee: editedCoffee
     }
 }
 
@@ -101,14 +134,14 @@ export function putCoffee(editedCoffee, coffeeId) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    imgUrl: editedCoffee.imgUrl,
+                    url: editedCoffee.url,
                     title: editedCoffee.title,
                     price: editedCoffee.price
                 })
             })
             .then(response => response.json())
             .then(json => {
-                dispatch(editCoffeeSuccess(json.editedCoffee, coffeeId))
+                dispatch(getCoffeeById(coffeeId, editCoffeeSuccess))
             })
     }
 }
@@ -134,8 +167,8 @@ export function fetchCoffeeList() {
 
         return fetch(`${config.apiUrl}/coffee`)
             .then(response => response.json())
-            .then(json => {
-                dispatch(receiveCoffeeList(json.coffeeList))
+            .then(coffeeList => {
+                dispatch(receiveCoffeeList(coffeeList))
             })
     }
 }

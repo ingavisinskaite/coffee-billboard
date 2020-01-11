@@ -48,19 +48,21 @@ const CoffeeCard = props => {
     let formattedPrice = `${price.toFixed(2)}€`;
     return formattedPrice;
   };
+  
+  const cardMedia = <CardMedia
+    className="coffee-img"
+    image={props.url}
+    title={props.title}
+    style={{
+      background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)) url('${props.url}')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    }}
+  />
 
   return (
     <Card className="coffee-card">
-      <CardMedia
-        className="coffee-img"
-        image={props.imgUrl}
-        title={props.title}
-        style={{
-          background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('${props.imgUrl}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      />
+      {cardMedia}
       <CardActions>
         <Tooltip title="Delete" aria-label="delete">
           <DeleteIcon className="icon delete" onClick={handleClickOpenDelete} />
@@ -81,7 +83,7 @@ const CoffeeCard = props => {
           isOpen={openEdit}
           handleClose={handleCloseEdit}
           coffeeTitle={props.title}
-          coffeeImg={props.imgUrl}
+          coffeeImg={props.url}
           coffeePrice={props.price}
           editCard={editCard}
           coffeeId={props.id}

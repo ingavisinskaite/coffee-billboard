@@ -46,13 +46,13 @@ describe('Coffee Reducer', () => {
         const newCoffeeList = [
             {
                 id: 0,
-                imgUrl: './latte.jpg',
+                url: './latte.jpg',
                 title: 'Latte',
                 price: 3
             },
             {
                 id: 1,
-                imgUrl: './mocha.jpg',
+                url: './mocha.jpg',
                 title: 'Mocha',
                 price: 2
             }
@@ -69,13 +69,13 @@ describe('Coffee Reducer', () => {
         const initialCoffeeList = [
             {
                 id: 0,
-                imgUrl: './latte.jpg',
+                url: './latte.jpg',
                 title: 'Latte',
                 price: 3
             },
             {
                 id: 1,
-                imgUrl: './mocha.jpg',
+                url: './mocha.jpg',
                 title: 'Mocha',
                 price: 2
             }
@@ -95,7 +95,7 @@ describe('Coffee Reducer', () => {
         const initialCoffeeList = [
             {
                 id: 0,
-                imgUrl: './latte.jpg',
+                url: './latte.jpg',
                 title: 'Latte',
                 price: 3
             }
@@ -103,7 +103,7 @@ describe('Coffee Reducer', () => {
         const state = { isLoading: true, coffeeList: initialCoffeeList};
         const newCoffee =  {
             id: 1,
-            imgUrl: './mocha.jpg',
+            url: './mocha.jpg',
             title: 'Mocha',
             price: 2
         }
@@ -120,13 +120,13 @@ describe('Coffee Reducer', () => {
         const initialCoffeeList = [
             {
                 id: 0,
-                imgUrl: './latte.jpg',
+                url: './latte.jpg',
                 title: 'Latte',
                 price: 3
             },
             {
                 id: 1,
-                imgUrl: './mocha.jpg',
+                url: './mocha.jpg',
                 title: 'Mocha',
                 price: 2
             }
@@ -135,7 +135,7 @@ describe('Coffee Reducer', () => {
         const editedCoffeeId = 0;
         const editedCoffee = {
             id: 0,
-            imgUrl: './latte.jpg',
+            url: './latte.jpg',
             title: 'EditedLatte',
             price: 3
         };
