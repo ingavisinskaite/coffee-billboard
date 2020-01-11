@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/coffee-billboard/static/css/main.089bc4db.chunk.css",
-    "main.js": "/coffee-billboard/static/js/main.387079df.chunk.js",
-    "main.js.map": "/coffee-billboard/static/js/main.387079df.chunk.js.map",
-    "runtime-main.js": "/coffee-billboard/static/js/runtime-main.e1704352.js",
-    "runtime-main.js.map": "/coffee-billboard/static/js/runtime-main.e1704352.js.map",
+    "main.css": "/coffee-billboard/static/css/main.4555981a.chunk.css",
+    "main.js": "/coffee-billboard/static/js/main.54777bd5.chunk.js",
+    "main.js.map": "/coffee-billboard/static/js/main.54777bd5.chunk.js.map",
+    "runtime-main.js": "/coffee-billboard/static/js/runtime-main.516fde5b.js",
+    "runtime-main.js.map": "/coffee-billboard/static/js/runtime-main.516fde5b.js.map",
     "static/css/2.450de805.chunk.css": "/coffee-billboard/static/css/2.450de805.chunk.css",
-    "static/js/2.40f95726.chunk.js": "/coffee-billboard/static/js/2.40f95726.chunk.js",
-    "static/js/2.40f95726.chunk.js.map": "/coffee-billboard/static/js/2.40f95726.chunk.js.map",
+    "static/js/2.a5ee3a37.chunk.js": "/coffee-billboard/static/js/2.a5ee3a37.chunk.js",
+    "static/js/2.a5ee3a37.chunk.js.map": "/coffee-billboard/static/js/2.a5ee3a37.chunk.js.map",
     "index.html": "/coffee-billboard/index.html",
-    "precache-manifest.d451051972b5c521e5f61d5dc1e57b10.js": "/coffee-billboard/precache-manifest.d451051972b5c521e5f61d5dc1e57b10.js",
+    "precache-manifest.93b323d8796b21f20725ec8b1b26b641.js": "/coffee-billboard/precache-manifest.93b323d8796b21f20725ec8b1b26b641.js",
     "service-worker.js": "/coffee-billboard/service-worker.js",
     "static/css/2.450de805.chunk.css.map": "/coffee-billboard/static/css/2.450de805.chunk.css.map",
-    "static/css/main.089bc4db.chunk.css.map": "/coffee-billboard/static/css/main.089bc4db.chunk.css.map",
+    "static/css/main.4555981a.chunk.css.map": "/coffee-billboard/static/css/main.4555981a.chunk.css.map",
     "static/media/index.css": "/coffee-billboard/static/media/roboto-latin-900italic.ebf6d164.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.e1704352.js",
+    "static/js/runtime-main.516fde5b.js",
     "static/css/2.450de805.chunk.css",
-    "static/js/2.40f95726.chunk.js",
-    "static/css/main.089bc4db.chunk.css",
-    "static/js/main.387079df.chunk.js"
+    "static/js/2.a5ee3a37.chunk.js",
+    "static/css/main.4555981a.chunk.css",
+    "static/js/main.54777bd5.chunk.js"
   ]
 }
