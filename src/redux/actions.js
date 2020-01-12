@@ -144,7 +144,7 @@ export function requestCoffeeList() {
     }
 }
 
-export function receiveCoffeeList(json) {
+export function requestCoffeeListSuccess(json) {
     return {
         type: REQUEST_COFFEE_LIST_SUCCESS,
         coffeeList: json
@@ -158,7 +158,7 @@ export function fetchCoffeeList() {
         return fetch(`${config.apiUrl}/coffee`)
             .then(response => response.json())
             .then(coffeeList => {
-                dispatch(receiveCoffeeList(coffeeList))
+                dispatch(requestCoffeeListSuccess(coffeeList))
             })
     }
 }

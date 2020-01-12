@@ -1,107 +1,116 @@
-import { coffeeReducer } from './reducers';
-import { addCoffee, requestCoffeeList, editCoffee, removeCoffee,
-    receiveCoffeeList, removeCoffeeSuccess,
-    addCoffeeSuccess, editCoffeeSuccess } from './actions';
+import {
+    coffeeReducer
+} from './reducers';
+import {
+    editCoffee,
+    removeCoffee,
+    requestCoffeeListSuccess,
+    removeCoffeeSuccess,
+    addCoffeeSuccess,
+    editCoffeeSuccess
+} from './actions';
 
 
 describe('Coffee Reducer', () => {
-    it('should set is loading when add coffee is dispatched', () => {
-        const state = { isLoading: false, coffeeList: []};
-        const action = addCoffee({});
-
-        const newState = coffeeReducer(state, action);
-
-        expect(newState.isLoading).toBe(true)
-    })
-
-    it('should set is loading when request coffee list is dispatched', () => {
-        const state = { isLoading: false, coffeeList: []};
-        const action = requestCoffeeList();
-
-        const newState = coffeeReducer(state, action);
-
-        expect(newState.isLoading).toBe(true)
-    })
-
     it('should set is loading when edit coffee is dispatched', () => {
-        const state = { isLoading: false, coffeeList: []};
-        const action = editCoffee({}, 0);
+        const state = {
+            coffeeList: [{
+                    isLoading: false,
+                    id: 1
+                },
+                {
+                    isLoading: false,
+                    id: 2
+                }
+            ]
+        };
+        const action = editCoffee(2);
 
         const newState = coffeeReducer(state, action);
 
-        expect(newState.isLoading).toBe(true)
+        expect(newState.coffeeList[1].isLoading).toBe(true)
     })
 
     it('should set is loading when remove coffee is dispatched', () => {
-        const state = { isLoading: false, coffeeList: []};
-        const action = removeCoffee(0);
+        const state = {
+            coffeeList: [{
+                    isLoading: false,
+                    id: 1
+                },
+                {
+                    isLoading: false,
+                    id: 2
+                }
+            ]
+        };
+        const action = removeCoffee(1);
 
         const newState = coffeeReducer(state, action);
 
-        expect(newState.isLoading).toBe(true)
+        expect(newState.coffeeList[0].isLoading).toBe(true) 
     })
 
-    it('should disable is loading and set coffeeList when receive coffee is dispatched', () => {
-        const state = { isLoading: true, coffeeList: []};
-        const newCoffeeList = [
-            {
+    it('should set coffee list when request coffee list success is dispatched', () => {
+        const state = {
+            coffeeList: []
+        };
+        const newCoffeeList = [{
                 id: 0,
-                url: './latte.jpg',
+                url: 'http://www.img.com/latte.jpg',
                 title: 'Latte',
                 price: 3
             },
             {
                 id: 1,
-                url: './mocha.jpg',
+                url: 'http://www.img.com/mocha.jpg',
                 title: 'Mocha',
                 price: 2
             }
         ]
-        const action = receiveCoffeeList(newCoffeeList);
+        const action = requestCoffeeListSuccess(newCoffeeList);
 
         const newState = coffeeReducer(state, action);
 
-        expect(newState.isLoading).toBe(false);
         expect(newState.coffeeList).toBe(newCoffeeList);
     })
 
-    it('should disable is loading and remove coffee when remove coffee success is dispatched', () => {
-        const initialCoffeeList = [
-            {
+    it('should remove coffee when remove coffee success is dispatched', () => {
+        const initialCoffeeList = [{
                 id: 0,
-                url: './latte.jpg',
+                url: 'http://www.img.com/latte.jpg',
                 title: 'Latte',
                 price: 3
             },
             {
                 id: 1,
-                url: './mocha.jpg',
+                url: 'http://www.img.com/mocha.jpg',
                 title: 'Mocha',
                 price: 2
             }
         ]
-        const state = { isLoading: true, coffeeList: initialCoffeeList};
+        const state = {
+            coffeeList: initialCoffeeList
+        };
         const removedCoffeeId = 0;
         const action = removeCoffeeSuccess(removedCoffeeId);
 
         const newState = coffeeReducer(state, action);
 
-        expect(newState.isLoading).toBe(false);
         expect(newState.coffeeList.length).toBe(1);
         expect(newState.coffeeList[0].title).toBe('Mocha');
     })
 
-    it('should disable is loading and add coffee when add coffee success is dispatched', () => {
-        const initialCoffeeList = [
-            {
-                id: 0,
-                url: './latte.jpg',
-                title: 'Latte',
-                price: 3
-            }
-        ]
-        const state = { isLoading: true, coffeeList: initialCoffeeList};
-        const newCoffee =  {
+    it('should add coffee when add coffee success is dispatched', () => {
+        const initialCoffeeList = [{
+            id: 0,
+            url: 'http://www.img.com/mocha.jpg',
+            title: 'Latte',
+            price: 3
+        }]
+        const state = {
+            coffeeList: initialCoffeeList
+        };
+        const newCoffee = {
             id: 1,
             url: './mocha.jpg',
             title: 'Mocha',
@@ -111,14 +120,12 @@ describe('Coffee Reducer', () => {
 
         const newState = coffeeReducer(state, action);
 
-        expect(newState.isLoading).toBe(false);
         expect(newState.coffeeList.length).toBe(2);
         expect(newState.coffeeList[1].title).toBe('Mocha');
     })
 
-    it('should disable is loading and edit coffee when edit coffee success is dispatched', () => {
-        const initialCoffeeList = [
-            {
+    it('should edit coffee when edit coffee success is dispatched', () => {
+        const initialCoffeeList = [{
                 id: 0,
                 url: './latte.jpg',
                 title: 'Latte',
@@ -131,19 +138,19 @@ describe('Coffee Reducer', () => {
                 price: 2
             }
         ]
-        const state = { isLoading: true, coffeeList: initialCoffeeList};
-        const editedCoffeeId = 0;
+        const state = {
+            coffeeList: initialCoffeeList
+        };
         const editedCoffee = {
             id: 0,
             url: './latte.jpg',
             title: 'EditedLatte',
             price: 3
         };
-        const action = editCoffeeSuccess(editedCoffee, editedCoffeeId);
+        const action = editCoffeeSuccess(editedCoffee, editedCoffee.id);
 
         const newState = coffeeReducer(state, action);
 
-        expect(newState.isLoading).toBe(false);
         expect(newState.coffeeList[0].title).toBe('EditedLatte');
     })
 })
