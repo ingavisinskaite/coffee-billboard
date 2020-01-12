@@ -52,6 +52,7 @@ const Billboard = props => {
                     title={c.title}
                     price={c.price}
                     id={c.id}
+                    isLoading={c.isLoading}
                     deleteCard={e => deleteCard(index)}
                   />
                 </Grid>
